@@ -6,7 +6,7 @@ The project is still in active development and in an early stage. Hence the name
 
 ## Installation
 
-Before you even start, download a .zim file with the content you want. I suggest heading over [here](http://download.kiwix.org/zim/). The file size depends on your SD card.
+Before you even start, download a .zim file with the content you want. I suggest heading over [here](http://download.kiwix.org/zim/). The file size depends on your SD card. You will also need the Pi to be connected to internet via ethernet, or any other wireless interface besides wlan0.
 
 First, install the necessary dependencies.
 
