@@ -6,10 +6,17 @@ sudo systemctl stop dnsmasq
 sudo systemctl stop hostapd
 sudo snap install rocketchat-server
 pip3 install zimply
-sudo mv zimply.py /home/pi/zimply.py
+sudo mv zimply.py /home/pi/wiki.py
 sudo mv zimply.service /etc/systemd/system/zimply.service
 sudo systemctl enable zimply.service
 sudo systemctl start zimply.service
+sudo mv *.html /var/www/html
+sudo mv *.map /var/www/html
+sudo mv *.css /var/www/html
+sudo mv *.js /var/www/html
+sudo mv *.jpeg /var/www/html
+sudo mv *.png /var/www/html
+sudo mv *.json /var/www/html
 sudo apt-get install apache2 -y
 sudo apt-get install php7.3 php7.3-gd sqlite php7.3-sqlite3 php7.3-curl php7.3-zip php7.3-xml php7.3-mbstring
 sudo service apache2 restart
