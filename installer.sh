@@ -22,7 +22,8 @@ sudo systemctl start zimply.service
 # Usage: ./install.sh
 #
 # more details at https://ownyourbits.com
-
+git clone https://github.com/Piflyer/nextcloudpi.git
+cd nextcloudpi
 BRANCH=master
 #DBG=x
 
