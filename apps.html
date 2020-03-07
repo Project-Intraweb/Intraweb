@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Apps</title>
+    <link rel="stylesheet" href="./material.min.css">
+    <script src="./material.min.js"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <style>
+    html, body {
+      font-family: 'Roboto', sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+    .demo-card-wide.mdl-card {
+      position: relative;
+      top: 50px;
+      border-radius: 4px;
+      width: 90%;
+      margin: auto;
+      display: flex;
+    }
+    .demo-card-wide1.mdl-card {
+      position: relative;
+      top: 100px;
+      border-radius: 4px;
+      width: 90%;
+      margin: auto;
+      display: flex;
+    }
+    .demo-card-wide2.mdl-card {
+      position: relative;
+      top: 150px;
+      bottom: 20px;
+      border-radius: 4px;
+      width: 90%;
+      margin: auto;
+      display: flex;
+    }
+    .demo-card-wide3.mdl-card {
+      position: relative;
+      top: 200px;
+      bottom: 20px;
+      border-radius: 4px;
+      width: 90%;
+      margin: auto;
+      display: flex;
+    }
+    .demo-card-wide4.mdl-card {
+      position: relative;
+      top: 250px;
+      bottom: 20px;
+      border-radius: 4px;
+      width: 90%;
+      margin: auto;
+      display: flex;
+    }
+    .demo-card-wide1 > .mdl-card__title {
+      color: #fff;
+      height: 135px;
+      display: flex;
+      background: url('nextcloud.png') center / cover;
+    }
+    .demo-card-wide2 > .mdl-card__title {
+      color: #fff;
+      height: 135px;
+      display: flex;
+      background: url('rocketchat.png') center / cover;
+    }
+    .demo-card-wide3 > .mdl-card__title {
+      color: black;
+      height: 135px;
+      display: flex;
+    }
+    .demo-card-wide > .mdl-card__title {
+      color: #fff;
+      height: 135px;
+      display: flex;
+      background: url('internet.jpeg') center / cover;
+    }
+    .demo-card-wide > .mdl-card__menu {
+      color: #fff;
+    }
+    #box{
+      opacity: 1.0;
+      height: 20%;
+      width: 100%;
+      bottom: 0px;
+    }
+    </style>
+  </head>
+  <body>
+    <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+  <header class="mdl-layout__header">
+    <div class="mdl-layout__header-row">
+      <span class="mdl-layout-title">Apps</span>
+      <div class="mdl-layout-spacer"></div>
+    </div>
+  </header>
+  <div class="mdl-layout__drawer">
+    <span class="mdl-layout-title">Intraweb</span>
+    <nav class="mdl-navigation">
+      <a class="mdl-navigation__link" href="index.html">Home</a>
+      <a class="mdl-navigation__link" href="http://raspberrypi.local:880">Nextcloud</a>
+      <a class="mdl-navigation__link" href="http://raspberrypi.local:3000">RocketChat</a>
+      <a class="mdl-navigation__link" href="moreinfo.html">More Info</a>
+      <a class="mdl-navigation__link" href="apps.html">Apps</a>
+    </nav>
+  </div>
+  <main class="mdl-layout__content">
+    <div class="page-content">
+<div class="demo-card-wide mdl-card mdl-shadow--2dp">
+  <div class="mdl-card__title">
+    <h2 class="mdl-card__title-text">Welcome</h2>
+  </div>
+  <div class="mdl-card__supporting-text">
+Here is a list of featured apps. Some apps maybe a bit slow, so please wait for it to fully load. More apps are coming on the way!
+  </div>
+  <div class="mdl-card__menu">
+  </div>
+</div>
+<div class="demo-card-wide1 mdl-card mdl-shadow--2dp">
+  <div class="mdl-card__title">
+    <h2 class="mdl-card__title-text">Nextcloud</h2>
+  </div>
+  <div class="mdl-card__supporting-text">
+An open source and private to store documents over the cloud.
+  </div>
+  <div class="mdl-card__actions mdl-card--border">
+    <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" href="http://raspberrypi.local:880">
+      Nextcloud
+    </a>
+  </div>
+  <div class="mdl-card__menu">
+  </div>
+</div>
+<div class="demo-card-wide2 mdl-card mdl-shadow--2dp">
+  <div class="mdl-card__title">
+    <h2 class="mdl-card__title-text">RocketChat</h2>
+  </div>
+  <div class="mdl-card__supporting-text">
+An open sourced and also awesome alternative to Slack. You can communicate to anyone in the Intraweb using RocketChat.
+  </div>
+  <div class="mdl-card__actions mdl-card--border">
+    <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" href="http://raspberrypi.local:3000">
+      RocketChat
+    </a>
+  </div>
+  <div class="mdl-card__menu">
+  </div>
+</div>
+<div class="demo-card-wide3 mdl-card mdl-shadow--2dp">
+  <div class="mdl-card__title">
+    <h2 class="mdl-card__title-text">Zimply</h2>
+  </div>
+  <div class="mdl-card__supporting-text">
+Search and read Wikipedia and other forms of information offline. This version includes everything but pictures.
+  </div>
+  <div class="mdl-card__actions mdl-card--border">
+    <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" href="http://raspberrypi.local:9454">
+      Zimply
+    </a>
+  </div>
+  <div class="mdl-card__menu">
+  </div>
+</div>
+
+<div class="demo-card-wide4 mdl-card mdl-shadow--2dp">
+  <div class="mdl-card__title">
+    <h2 class="mdl-card__title-text">GitLab</h2>
+  </div>
+  <div class="mdl-card__supporting-text">
+Our offline version of Github. Create and clone repositories offline with Gitlab. Default repositories are ones from the Eclub repository from Github. <b>COMING SOON!</b>
+  </div>
+  <div class="mdl-card__actions mdl-card--border">
+    <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" href="#">
+      GitLab
+    </a>
+  </div>
+  <div class="mdl-card__menu">
+  </div>
+</div>
+    </div>
+  </main>
+</div>
+  </body>
+</html>
