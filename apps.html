@@ -11,19 +11,50 @@
       font-family: 'Roboto', sans-serif;
       margin: 0;
       padding: 0;
+      background: #1B9DE2;
+    }
+    h1 {
+      position: absolute;
+      left: 5%;
+      top: 10%;
+      font-size: 80px;
+      font-style: normal;
+      font-weight: bold;
+      color: #FFFFFF;
+    }
+    #logo {
+      position: absolute;
+      min-width: 300px;
+      min-height: 60px;
+      left: 1%;
+      top: 1%;
+      background: #FFFFFF;
+      box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.25);
+      border-radius: 18px;
+      z-index: 2;
+    }
+    #image {
+      position: absolute;
+      max-width:100%;
+      max-height:100%;
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
     }
     .demo-card-wide.mdl-card {
       position: relative;
-      top: 50px;
+      top: 100px;
+      height: 500px;
       border-radius: 4px;
       width: 90%;
       margin: auto;
       display: flex;
+      background: transparent;
     }
     .demo-card-wide1.mdl-card {
       position: relative;
       top: 100px;
-      border-radius: 4px;
+      border-radius: 15px;
       width: 90%;
       margin: auto;
       display: flex;
@@ -32,7 +63,7 @@
       position: relative;
       top: 150px;
       bottom: 20px;
-      border-radius: 4px;
+      border-radius: 15px;
       width: 90%;
       margin: auto;
       display: flex;
@@ -41,7 +72,7 @@
       position: relative;
       top: 200px;
       bottom: 20px;
-      border-radius: 4px;
+      border-radius: 15px;
       width: 90%;
       margin: auto;
       display: flex;
@@ -50,7 +81,7 @@
       position: relative;
       top: 250px;
       bottom: 20px;
-      border-radius: 4px;
+      border-radius: 15px;
       width: 90%;
       margin: auto;
       display: flex;
@@ -59,7 +90,16 @@
       position: relative;
       top: 300px;
       bottom: 20px;
-      border-radius: 4px;
+      border-radius: 15px;
+      width: 90%;
+      margin: auto;
+      display: flex;
+    }
+    .demo-card-wide6.mdl-card {
+      position: relative;
+      top: 350px;
+      bottom: 20px;
+      border-radius: 15px;
       width: 90%;
       margin: auto;
       display: flex;
@@ -80,12 +120,29 @@
       color: black;
       height: 135px;
       display: flex;
+      background: url('zimply.png') center / cover;
     }
-    .demo-card-wide > .mdl-card__title {
+    .demo-card-wide4 > .mdl-card__title {
+      color: black;
+      height: 135px;
+      display: flex;
+      background: url('gitlab.png') center / cover;
+    }
+    .demo-card-wide5 > .mdl-card__title {
       color: #fff;
       height: 135px;
       display: flex;
-      background: url('internet.jpeg') center / cover;
+      background: url('phet.png') center / cover;
+    }
+    .demo-card-wide6 > .mdl-card__title {
+      color: #fff;
+      height: 135px;
+      display: flex;
+      background: url('webmin.png') center / cover;
+    }
+    .demo-card-wide > .mdl-card__title {
+      height: 135px;
+      display: flex;
     }
     .demo-card-wide > .mdl-card__menu {
       color: #fff;
@@ -99,35 +156,14 @@
     </style>
   </head>
   <body>
-    <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
-  <header class="mdl-layout__header">
-    <div class="mdl-layout__header-row">
-      <span class="mdl-layout-title">Apps</span>
-      <div class="mdl-layout-spacer"></div>
-    </div>
-  </header>
-  <div class="mdl-layout__drawer">
-    <span class="mdl-layout-title">Intraweb</span>
-    <nav class="mdl-navigation">
-      <a class="mdl-navigation__link" href="index.html">Home</a>
-      <a class="mdl-navigation__link" href="http://raspberrypi.local/nextcloud">Nextcloud</a>
-      <a class="mdl-navigation__link" href="http://raspberrypi.local:3000">RocketChat</a>
-      <a class="mdl-navigation__link" href="moreinfo.html">More Info</a>
-      <a class="mdl-navigation__link" href="apps.html">Apps</a>
-    </nav>
-  </div>
   <main class="mdl-layout__content">
     <div class="page-content">
-<div class="demo-card-wide mdl-card mdl-shadow--2dp">
-  <div class="mdl-card__title">
-    <h2 class="mdl-card__title-text">Welcome</h2>
-  </div>
-  <div class="mdl-card__supporting-text">
-Here is a list of featured apps. Some apps maybe a bit slow, so please wait for it to fully load. More apps are coming on the way!
-  </div>
-  <div class="mdl-card__menu">
-  </div>
-</div>
+      <div id="logo">
+        <img id="image" src="intraweb.png" alt="logo">
+      </div>
+      <div class="demo-card-wide mdl-card">
+        <h1>Here are some apps to try.</h1>
+      </div>
 <div class="demo-card-wide1 mdl-card mdl-shadow--2dp">
   <div class="mdl-card__title">
     <h2 class="mdl-card__title-text">Nextcloud</h2>
@@ -194,10 +230,24 @@ Our offline version of Github. Create and clone repositories offline with Gitlab
     <h2 class="mdl-card__title-text">Phet</h2>
   </div>
   <div class="mdl-card__supporting-text">
-Offline games (a.k.a. "simulations") provided by Phet. <b>NOTE:</b> Not all simulationsare provided. Onyl HTML5 simualtions are provided at this moment. </div>
+Offline games (a.k.a. "simulations") provided by Phet. <b>NOTE:</b> Not all simulations are provided. Only HTML5 simualtions are provided at this moment. </div>
   <div class="mdl-card__actions mdl-card--border">
     <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" href="http://raspberrypi.local/phet">
-      GitLab
+      Phet
+    </a>
+  </div>
+  <div class="mdl-card__menu">
+  </div>
+</div>
+<div class="demo-card-wide6 mdl-card mdl-shadow--2dp">
+  <div class="mdl-card__title">
+    <h2 class="mdl-card__title-text">Webmin</h2>
+  </div>
+  <div class="mdl-card__supporting-text">
+Console for admin. Access is resticted to admins only. Monitor the Pi's resources with a dashbaord, plus control tasks and other stuff right from Webmin </div>
+  <div class="mdl-card__actions mdl-card--border">
+    <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" href="https://raspberrypi.local:10000">
+      Webmin
     </a>
   </div>
   <div class="mdl-card__menu">

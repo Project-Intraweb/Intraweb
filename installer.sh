@@ -1,7 +1,7 @@
 #!/bin/bash
 
 sudo apt update -y
-sudo apt install -y snapd wget ca-certificates sudo lsb-release python3 python3-setuptools python3-dev python3-pip dnsmasq hostapd
+sudo apt install -y snapd wget ca-certificates lsb-release python3 python3-setuptools python3-dev python3-pip dnsmasq hostapd perl libnet-ssleay-perl openssl libauthen-pam-perl libpam-runtime libio-pty-perl apt-show-versions python
 sudo systemctl stop dnsmasq
 sudo systemctl stop hostapd
 sudo snap install rocketchat-server
@@ -36,6 +36,9 @@ sudo systemctl unmask hostapd
 sudo systemctl enable hostapd
 sudo systemctl start hostapd
 cd /home/pi
+wget http://prdownloads.sourceforge.net/webadmin/webmin_1.920_all.deb
+sudo dpkg --install webmin_1.920_all.deb
+cd /home/pi
 curl -Lo gitlab-ce_12.2.5-ce.0_armhf.deb https://packages.gitlab.com/gitlab/raspberry-pi2/packages/raspbian/stretch/gitlab-ce_12.2.5-ce.0_armhf.deb/download.deb
 sudo apt install ./gitlab-ce_12.2.5-ce.0_armhf.deb
 sudo sh -c 'echo external_url 'http://raspberrypi.local' > /etc/gitlab/gitlab.rb '
@@ -47,5 +50,5 @@ sudo gitlab-ctl reconfigure
 IFACE="$( ip r | grep "default via" | awk '{ print $5 }' | head -1 )"
 IP="$( ip a show dev "$IFACE" | grep global | grep -oP '\d{1,3}(.\d{1,3}){3}' | head -1 )"
 echo "Done.
-First: Visit http://$IP/nextcloud to configure your Nextcloud instance. Depending how large your zim file was, it may still take a while for ti to fully index it. Visit http://$IP to see all apps. Have fun!"
+First: Visit http://$IP/nextcloud to configure your Nextcloud instance. Depending how large your zim file was, it may still take a while for ti to fully index it. Visit http://$IP to see all apps. Have fun! NOTE: Facing SSL errors is nromal. IF youa re using Chrome, to bypass the warning, wait for the page to fully load and just type to the page "thisisunsafe"."
 exit 0
