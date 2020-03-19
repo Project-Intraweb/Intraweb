@@ -1,7 +1,6 @@
 #!/bin/bash
-
 sudo apt update -y
-sudo apt install -y snapd wget ca-certificates lsb-release python3 python3-setuptools python3-dev python3-pip dnsmasq hostapd perl libnet-ssleay-perl openssl libauthen-pam-perl libpam-runtime libio-pty-perl apt-show-versions python
+sudo apt install -y snapd wget ca-certificates lsb-release python3 python3-setuptools python3-dev python3-pip dnsmasq hostapd perl libnet-ssleay-perl openssl libauthen-pam-perl libpam-runtime libio-pty-perl apt-show-versions python apt-transport-https golang
 sudo systemctl stop dnsmasq
 sudo systemctl stop hostapd
 sudo snap install rocketchat-server
@@ -10,6 +9,10 @@ sudo mv zimply.py /home/pi/wiki.py
 sudo mv zimply.service /etc/systemd/system/zimply.service
 sudo systemctl enable zimply.service
 sudo systemctl start zimply.service
+curl https://downloads.plex.tv/plex-keys/PlexSign.key | sudo apt-key add -
+echo deb https://downloads.plex.tv/repo/deb public main | sudo tee /etc/apt/sources.list.d/plexmediaserver.list
+sudo apt-get update
+sudo apt-get install plexmediaserver
 sudo mv *.html /var/www/html
 sudo mv *.map /var/www/html
 sudo mv *.css /var/www/html
@@ -50,5 +53,5 @@ sudo gitlab-ctl reconfigure
 IFACE="$( ip r | grep "default via" | awk '{ print $5 }' | head -1 )"
 IP="$( ip a show dev "$IFACE" | grep global | grep -oP '\d{1,3}(.\d{1,3}){3}' | head -1 )"
 echo "Done.
-First: Visit http://$IP/nextcloud to configure your Nextcloud instance. Depending how large your zim file was, it may still take a while for ti to fully index it. Visit http://$IP to see all apps. Have fun! NOTE: Facing SSL errors is nromal. IF youa re using Chrome, to bypass the warning, wait for the page to fully load and just type to the page "thisisunsafe"."
+First: Visit http://$IP/nextcloud to configure your Nextcloud instance. Depending how large your zim file was, it may still take a while for it to fully index. Visit http://$IP to see all apps. Have fun! NOTE: Facing SSL errors is nromal. IF youa re using Chrome, to bypass the warning, wait for the page to fully load and just type to the page "thisisunsafe"."
 exit 0
