@@ -1,4 +1,5 @@
 #!/bin/bash
+cd ~/Intraweb
 sudo apt update -y
 sudo apt install -y snapd wget ca-certificates lsb-release python3 python3-setuptools python3-dev python3-pip dnsmasq hostapd perl libnet-ssleay-perl openssl libauthen-pam-perl libpam-runtime libio-pty-perl apt-show-versions python apt-transport-https golang
 sudo systemctl stop dnsmasq
@@ -20,6 +21,7 @@ sudo mv *.js /var/www/html
 sudo mv *.jpeg /var/www/html
 sudo mv *.png /var/www/html
 sudo mv *.json /var/www/html
+sudo mv phet /var/www/html
 sudo apt-get install apache2 -y
 sudo apt-get install php7.3 php7.3-gd sqlite php7.3-sqlite3 php7.3-curl php7.3-zip php7.3-xml php7.3-mbstring
 sudo service apache2 restart
