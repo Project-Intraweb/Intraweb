@@ -39,14 +39,6 @@ if [ $wiki = 'y' ]; then
     sudo systemctl start zimply.service
 fi
 
-echo -n "Would you like to install the Plex Media Server?[y/n]: "
-read plex
-if [ $plex = 'y' ]; then
-    echo "Installing plex"
-    curl https://downloads.plex.tv/plex-keys/PlexSign.key | sudo apt-key add -
-    echo deb https://downloads.plex.tv/repo/deb public main | sudo tee /etc/apt/sources.list.d/plexmediaserver.list
-    sudo apt-get install plexmediaserver
-fi
 sudo mv *.html /var/www/html
 sudo mv *.map /var/www/html
 sudo mv *.css /var/www/html
@@ -65,11 +57,16 @@ echo -n "Would you like to install Nextcloud?[y/n]: "
 read next
 if [ $next = 'y' ]; then
     echo "Installing nextcloud"
-    curl https://download.nextcloud.com/server/releases/nextcloud-18.0.1.zip
-    sudo unzip nextcloud-18.0.1.zip
+    curl https://download.nextcloud.com/server/releases/latest.zip
+    sudo unzip latest.zip
     sudo mkdir -p /var/www/html/nextcloud/data
     sudo chown -R www-data:www-data /var/www/html/nextcloud/
     sudo chmod 750 /var/www/html/nextcloud/data
+fi
+
+echo -n "Would you like to setup a Wireless Access point?[y/n]: "
+read wifi-ap
+if [ $wifi-ap = 'y' ]; then
     sudo mv dhcpcd.conf /etc/dhcpcd.conf
     sudo service dhcpcd restart
     sudo mv /etc/dnsmasq.conf /etc/dnsmasq.conf.orig
