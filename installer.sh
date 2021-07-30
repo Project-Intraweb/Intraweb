@@ -1,15 +1,20 @@
 #!/bin/bash
 cd ~/Intraweb
+echo "Updating"
 sudo apt update -y
+sudo apt upgrade -y
+echo "Installing dependencies"
 sudo apt install -y snapd wget ca-certificates lsb-release python3 python3-setuptools python3-dev python3-pip dnsmasq hostapd perl libnet-ssleay-perl openssl libauthen-pam-perl libpam-runtime libio-pty-perl apt-show-versions python apt-transport-https golang
 sudo systemctl stop dnsmasq
 sudo systemctl stop hostapd
+echo "Installing Rocket Chat"
 sudo snap install rocketchat-server
 pip3 install zimply
 sudo mv zimply.py /home/pi/wiki.py
 sudo mv zimply.service /etc/systemd/system/zimply.service
 sudo systemctl enable zimply.service
 sudo systemctl start zimply.service
+echo "Installing plex"
 curl https://downloads.plex.tv/plex-keys/PlexSign.key | sudo apt-key add -
 echo deb https://downloads.plex.tv/repo/deb public main | sudo tee /etc/apt/sources.list.d/plexmediaserver.list
 sudo apt-get update
@@ -22,9 +27,11 @@ sudo mv *.jpeg /var/www/html
 sudo mv *.png /var/www/html
 sudo mv *.json /var/www/html
 sudo mv phet /var/www/html
+echo "Installing server"
 sudo apt-get install apache2 -y
 sudo apt-get install php7.3 php7.3-gd sqlite php7.3-sqlite3 php7.3-curl php7.3-zip php7.3-xml php7.3-mbstring
 sudo service apache2 restart
+echo "Installing nextcloud"
 curl https://download.nextcloud.com/server/releases/nextcloud-18.0.1.zip
 sudo unzip nextcloud-18.0.1.zip
 sudo mkdir -p /var/www/html/nextcloud/data
@@ -40,6 +47,7 @@ sudo sh -c 'echo DAEMON_CONF="/etc/hostapd/hostapd.conf" > /etc/default/hostapd'
 sudo systemctl unmask hostapd
 sudo systemctl enable hostapd
 sudo systemctl start hostapd
+echo "Installing webmin"
 cd /home/pi
 wget http://prdownloads.sourceforge.net/webadmin/webmin_1.920_all.deb
 sudo dpkg --install webmin_1.920_all.deb
