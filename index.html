@@ -157,7 +157,7 @@
     </a>
     </div>
   <script type="text/javascript">
-  function time() {
+window.setInterval(function() {
   var hour = new Date().getHours();
   var greeting;
   if (hour < 12) {
@@ -168,7 +168,7 @@
       greeting = "Good Evening";
   }
   document.getElementById("greeting").innerHTML = greeting;
-}
+}, 1000);
   window.setInterval(function() {
     var online = window.navigator.onLine;
     var status1;
@@ -182,7 +182,6 @@
     document.getElementById("status").innerHTML = status1;
 
   }, 1000);
-  window.onload = time();
   </script>
   </body>
 </html>
