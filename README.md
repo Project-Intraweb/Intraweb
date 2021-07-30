@@ -35,7 +35,7 @@ Pull requests are welcome. For major changes, please open an issue first to disc
 Please make sure to update tests as appropriate.
 ## Sources
 * [Nextcloud](https://nextcloud.com)
-* [RokcetChat](https://github.com/RocketChat/Rocket.Chat.RaspberryPi)
+* [RocketChat](https://github.com/RocketChat/Rocket.Chat.RaspberryPi)
 * [ZIMply](https://github.com/kimbauters/ZIMply)
 * [Gitlab](https://about.gitlab.com/)
 * [PHET](https://phet.colorado.edu/)
