@@ -2,7 +2,7 @@
 cd ~/Intraweb
 #general clean up
 sudo apt update -y
-sudo apt install -y snapd wget ca-certificates lsb-release python3 python3-setuptools python3-dev python3-pip dnsmasq hostapd perl libnet-ssleay-perl openssl libauthen-pam-perl libpam-runtime libio-pty-perl apt-show-versions python apt-transport-https golang openssh-server ca-certificates apt-transport-https perl
+sudo apt install -y snapd curl wget ca-certificates lsb-release python3 python3-setuptools python3-dev python3-pip dnsmasq hostapd perl libnet-ssleay-perl openssl libauthen-pam-perl libpam-runtime libio-pty-perl apt-show-versions python apt-transport-https golang openssh-server ca-certificates apt-transport-https perl
 sudo systemctl stop dnsmasq
 sudo systemctl stop hostapd
 
