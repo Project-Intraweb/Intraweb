@@ -27,7 +27,7 @@ cd Intraweb
 sudo chmod +X installer.sh
 sudo bash installer.sh
 ```
-Once the script is done, configure your Nextcloud instances. All apps are in the apps section on the home page.
+Once the script is done, configure your Nextcloud instance. All apps are in the apps section on the home page.
 
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
