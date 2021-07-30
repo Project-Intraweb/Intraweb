@@ -1,4 +1,7 @@
 #!/bin/bash
+echo "Changing Hostname"
+sudo rm /etc/hostname
+sudo echo "intraweb" >> /etc/hostname
 cd ~/Intraweb
 echo "Updating"
 sudo apt update -y
