@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Project Intraweb</title>
+    <style>
+    html, body {
+      font-family: 'Roboto', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #F2F3F7;
+    }
+    :root {
+      --primary-color: #0099ff;
+      --font-color: black;
+      --bg-color: white;
+      --shadow-color: rgba(0,0,0,0.2);
+      --gimage: url(github.png);
+    }
+    a {
+      text-decoration: none;
+      color:inherit;
+    }
+    .cont{
+      height: auto;
+      width: 100%;
+      max-width: 1100px;
+      margin-left: auto;
+      margin-right: auto;
+      position:relative;
+    }
+    h1 {
+      position: relative;
+      color: var(--font-color);
+      margin: 0;
+      font-size: 35px;
+      padding-top: 30px;
+      padding-left: 10px;
+      padding-bottom: 30px;
+      font-weight: 900px;
+    }
+    h3 {
+      position: relative;
+      color: var(--font-color);
+      font-size: 20px;
+      text-transform: uppercase;
+      display: inline-block;
+      margin-left: 5px;
+    }
+    h4 {
+      position: relative;
+      color: var(--font-color);
+      margin: 0;
+      display: inline-block;
+      font-size: 20px;
+      padding-left: 10px;
+      padding-bottom: 30px;
+      font-weight: 900px;
+    }
+    .card {
+      width: calc(92.5vw);
+      height: auto;
+      background: var(--bg-color);
+      contain: content;
+      max-width: 1000px;
+      margin-left: auto;
+      margin-right: auto;
+      box-shadow: 0 10px 16px 0 var(--shadow-color);
+      transition: 0.25s;
+      border-radius: 20px;
+      margin-bottom: 25px;
+      display: block;
+    }
+    .banner {
+      width: calc(92.5vw);
+      height: 75vh;
+      background: url(back.jpg);
+      background-size: cover;
+      background-position: bottom;
+      contain: content;
+      max-width: 1000px;
+      margin-left: auto;
+      margin-right: auto;
+      transition: 0.25s;
+      border-radius: 20px;
+      margin-bottom: 25px;
+      margin-top: 25px;
+      display: flex;
+    }
+    .banner .text {
+      align-self: flex-end;
+      color: white;
+    }
+
+    .card:hover{
+      transform: scale(1.025);
+      box-shadow: 0 20px 40px 0 var(--shadow-color);
+    }
+    .card:active{
+      transform: scale(.975);
+      box-shadow: 0 20px 40px 0 var(--shadow-color);
+    }
+    .divider {
+      display: inline-block;
+      height: 20px;
+      width: 3px;
+      position: relative;
+      border-radius: 30px;
+      background: #0099ff;
+      margin-left: 35px;
+    }
+    p {
+      margin-left: 25px;
+      margin-right: 7.5px;
+      margin-bottom: 20px;
+      color: var(--font-color);
+    }
+    </style>
+  </head>
+  <body>
+    <div class="cont">
+      <div class="banner">
+        <div class="text">
+          <h1 id="greeting" style="color: white; padding-bottom: 0px;"></h1>
+          <p style="margin-top: 10px; color: white; margin-left: 10px;">Photo by <a href="https://unsplash.com/@caleb_carl?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Caleb Carl</a> on <a href="https://unsplash.com/images/stock?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a></p>
+        </div>
+      </div>
+      <a class="card" style="background: #0099ff;" href="#">
+        <h1 style="color: white;">Project Intraweb</h1>
+        <h4 style="color: white;">Current Internet Status:</h4>
+        <h4 id="status" style="color: white; padding-left: 0px;"></h4>
+      </a>
+    <div class="divider">
+    </div>
+    <h3>APPS</h3>
+    <a class="card" href="http://raspberrypi.local/nextcloud">
+      <h1>Nextcloud</h1>
+    </a>
+    <a class="card" href="http://raspberrypi.local:3000">
+      <h1>Rocket.Chat</h1>
+    </a>
+    <a class="card" href="http://raspberrypi.local:9454">
+      <h1>Zimply</h1>
+    </a>
+    <a class="card" href="http://raspberrypi.local:8081">
+      <h1>GitLab</h1>
+    </a>
+    <a class="card" href="http://raspberrypi.local/phet">
+      <h1>PHET</h1>
+    </a>
+    <a class="card" href="https://raspberrypi.local:10000">
+      <h1>Webmin</h1>
+    </a>
+    <a class="card" href="https://raspberrypi.local:32400">
+      <h1>Plex</h1>
+    </a>
+    </div>
+  <script type="text/javascript">
+  function time() {
+  var hour = new Date().getHours();
+  var greeting;
+  if (hour < 12) {
+      greeting = "Good Morning";
+  } else if (hour < 18 && hour >= 12) {
+      greeting = "Good Afternoon";
+  } else {
+      greeting = "Good Evening";
+  }
+  document.getElementById("greeting").innerHTML = greeting;
+}
+  window.setInterval(function() {
+    var online = window.navigator.onLine;
+    var status1;
+    if (online) {
+      status1 = "Online";
+      document.getElementById("status").style.color = "#37FF8B";
+    } else {
+      status1 = "Offline";
+      document.getElementById("status").style.color = "#D11b1b";
+    }
+    document.getElementById("status").innerHTML = status1;
+
+  }, 1000);
+  window.onload = time();
+  </script>
+  </body>
+</html>
