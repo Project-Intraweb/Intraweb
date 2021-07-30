@@ -17,7 +17,6 @@ sudo systemctl start zimply.service
 echo "Installing plex"
 curl https://downloads.plex.tv/plex-keys/PlexSign.key | sudo apt-key add -
 echo deb https://downloads.plex.tv/repo/deb public main | sudo tee /etc/apt/sources.list.d/plexmediaserver.list
-sudo apt-get update
 sudo apt-get install plexmediaserver
 sudo mv *.html /var/www/html
 sudo mv *.map /var/www/html
