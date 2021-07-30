@@ -65,7 +65,7 @@ echo -n "Would you like to install Nextcloud?[y/n]: "
 read next
 if [ $next = 'y' ]; then
     echo "Installing nextcloud"
-    curl https://download.nextcloud.com/server/releases/latest.zip
+    curl -Lo https://download.nextcloud.com/server/releases/latest.zip
     sudo unzip latest.zip
     sudo mkdir -p /var/www/html/nextcloud/data
     sudo chown -R www-data:www-data /var/www/html/nextcloud/
@@ -73,8 +73,8 @@ if [ $next = 'y' ]; then
 fi
 
 echo -n "Would you like to setup a Wireless Access point?[y/n]: "
-read wifi-ap
-if [ $wifi-ap = 'y' ]; then
+read wifiap
+if [ $wifiap = 'y' ]; then
     echo "Setting up Wireless Access point"
     sudo mv dhcpcd.conf /etc/dhcpcd.conf
     sudo service dhcpcd restart
