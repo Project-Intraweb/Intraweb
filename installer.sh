@@ -17,7 +17,8 @@ echo "Updating"
 sudo apt update -y
 sudo apt upgrade -y
 echo "Installing dependencies"
-sudo apt install -y snapd wget ca-certificates lsb-release python3 python3-setuptools python3-dev python3-pip dnsmasq hostapd perl libnet-ssleay-perl openssl libauthen-pam-perl libpam-runtime libio-pty-perl apt-show-versions python apt-transport-https golang
+sudo apt install -y snapd wget ca-certificates lsb-release python3 python3-setuptools python3-dev python3-pip dnsmasq hostapd perl libnet-ssleay-perl openssl libauthen-pam-perl libpam-runtime libio-pty-perl apt-show-versions python apt-transport-https golang curl
+sudo snap install core
 sudo systemctl stop dnsmasq
 sudo systemctl stop hostapd
 
@@ -26,6 +27,13 @@ read rocket
 if [ $rocket = 'y' ]; then
     echo "Installing Rocket Chat"
     sudo snap install rocketchat-server
+fi
+
+echo -n "Would you like to install Plex Media Server?[y/n]: "
+read rocket
+if [ $rocket = 'y' ]; then
+    echo "Installing Plex Media Server"
+    sudo snap install plexmediaserver
 fi
 
 echo -n "Would you like to install Wikipedia?[y/n]: "
@@ -67,6 +75,7 @@ fi
 echo -n "Would you like to setup a Wireless Access point?[y/n]: "
 read wifi-ap
 if [ $wifi-ap = 'y' ]; then
+    echo "Setting up Wireless Access point"
     sudo mv dhcpcd.conf /etc/dhcpcd.conf
     sudo service dhcpcd restart
     sudo mv /etc/dnsmasq.conf /etc/dnsmasq.conf.orig
