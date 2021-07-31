@@ -9,6 +9,7 @@
       font-family: 'Roboto', sans-serif;
       margin: 0;
       padding: 0;
+      padding-bottom: 15px;
       background: #F2F3F7;
     }
     :root {
@@ -38,6 +39,18 @@
       margin-left: 10px;
       margin-bottom: 30px;
       font-weight: 900px;
+    }
+    .logo {
+      background: red;
+      height: 75px;
+      width: 75px;
+      margin-top: 10px;
+      margin-bottom: 10px;
+      margin-left: 10px;
+      border-radius: 15px;
+      background-size: cover;
+      background-position: center;
+      display: inline-block;
     }
     h3 {
       position: relative;
@@ -123,6 +136,10 @@
       flex-flow: row wrap;
       max-width: 1000px;
     }
+    .flexcard h1 {
+      display: inline-block;
+      vertical-align:top
+    }
     .flexcard {
       height: auto;
       background: var(--bg-color);
@@ -159,7 +176,7 @@
     <div class="cont">
       <div class="banner" id="banner">
         <div class="text">
-          <h1 id="greeting" style="color: white; padding-bottom: 0px;"></h1>
+          <h1 id="greeting" style="color: white; margin-bottom: 0px;"></h1>
           <p id="description" style="margin-top: 10px; color: white; margin-left: 10px;"></p>
         </div>
       </div>
@@ -173,32 +190,32 @@
     <h3>APPS</h3>
     <div class="container">
     <a class="flexcard" href="http://raspberrypi.local/nextcloud">
-      <h1>Nextcloud</h1>
+      <div class="logo" style="background: url(logo/nextcloud.png); background-size: cover;"></div><h1>Nextcloud</h1>
     </a>
     <a class="flexcard" href="http://raspberrypi.local:3000">
-      <h1>Rocket.Chat</h1>
+      <div class="logo" style="background: url(logo/rocketchat.png); background-size: cover;"></div><h1>Rocket.Chat</h1>
     </a>
     <a class="flexcard" href="http://raspberrypi.local:9454">
-      <h1>Zimply</h1>
+      <div class="logo" style="background: url(logo/wiki.png); background-size: cover;"></div><h1>Zimply</h1>
     </a>
     <a class="flexcard" href="http://raspberrypi.local:8081">
-      <h1>GitLab</h1>
+      <div class="logo" style="background: url(logo/gitlab.png); background-size: cover;"></div><h1>GitLab</h1>
     </a>
     <a class="flexcard" href="http://raspberrypi.local/phet">
-      <h1>PHET</h1>
+      <div class="logo" style="background: url(logo/phet.png); background-size: cover;"></div><h1>PHET</h1>
     </a>
     <a class="flexcard" href="https://raspberrypi.local:10000">
-      <h1>Webmin</h1>
+      <div class="logo" style="background: url(logo/webmin.png); background-size: cover;"></div><h1>Webmin</h1>
     </a>
     <a class="flexcard" href="https://raspberrypi.local:32400">
-      <h1>Plex</h1>
+      <div class="logo" style="background: url(logo/plex.jpeg); background-size: cover;"></div><h1>Plex</h1>
     </a>
     </div>
     </div>
   <script type="text/javascript">
+  var items = ['cliffs', 'beach', 'sand', 'mountains', 'forests'];
+  var seed = items[Math.floor(Math.random()*items.length)];
   function backdrop() {
-    var items = ['cliffs', 'beach', 'sand', 'mountains', 'forests'];
-    var seed = items[Math.floor(Math.random()*items.length)];
     console.log(seed);
     if(seed == 'cliffs') {
       document.getElementById('banner').style.backgroundImage = "url(backdrops/cliffs.jpg)";
