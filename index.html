@@ -34,9 +34,9 @@
       color: var(--font-color);
       margin: 0;
       font-size: 35px;
-      padding-top: 30px;
-      padding-left: 10px;
-      padding-bottom: 30px;
+      margin-top: 30px;
+      margin-left: 10px;
+      margin-bottom: 30px;
       font-weight: 900px;
     }
     h3 {
@@ -114,6 +114,45 @@
       margin-bottom: 20px;
       color: var(--font-color);
     }
+    .container {
+      display: flex;
+      width: calc(92.5vw);
+      margin-left: auto;
+      justify-content: space-between;
+      margin-right: auto;
+      flex-flow: row wrap;
+      max-width: 1000px;
+    }
+    .flexcard {
+      height: auto;
+      background: var(--bg-color);
+      contain: content;
+      max-width: 450px;
+      margin-left: auto;
+      margin-right: auto;
+      box-shadow: 0 10px 16px 0 var(--shadow-color);
+      transition: 0.25s;
+      border-radius: 20px;
+      margin-bottom: 25px;
+      flex: 50%;
+    }
+    @media (max-width: 1000px) {
+      .container {
+        flex-direction: column;
+      }
+      .flexcard {
+        width: calc(92.5vw);
+        max-width: 1000px;
+      }
+    }
+    .flexcard:hover{
+      transform: scale(1.025);
+      box-shadow: 0 20px 40px 0 var(--shadow-color);
+    }
+    .flexcard:active{
+      transform: scale(.975);
+      box-shadow: 0 20px 40px 0 var(--shadow-color);
+    }
     </style>
   </head>
   <body>
@@ -132,27 +171,29 @@
     <div class="divider">
     </div>
     <h3>APPS</h3>
-    <a class="card" href="http://raspberrypi.local/nextcloud">
+    <div class="container">
+    <a class="flexcard" href="http://raspberrypi.local/nextcloud">
       <h1>Nextcloud</h1>
     </a>
-    <a class="card" href="http://raspberrypi.local:3000">
+    <a class="flexcard" href="http://raspberrypi.local:3000">
       <h1>Rocket.Chat</h1>
     </a>
-    <a class="card" href="http://raspberrypi.local:9454">
+    <a class="flexcard" href="http://raspberrypi.local:9454">
       <h1>Zimply</h1>
     </a>
-    <a class="card" href="http://raspberrypi.local:8081">
+    <a class="flexcard" href="http://raspberrypi.local:8081">
       <h1>GitLab</h1>
     </a>
-    <a class="card" href="http://raspberrypi.local/phet">
+    <a class="flexcard" href="http://raspberrypi.local/phet">
       <h1>PHET</h1>
     </a>
-    <a class="card" href="https://raspberrypi.local:10000">
+    <a class="flexcard" href="https://raspberrypi.local:10000">
       <h1>Webmin</h1>
     </a>
-    <a class="card" href="https://raspberrypi.local:32400">
+    <a class="flexcard" href="https://raspberrypi.local:32400">
       <h1>Plex</h1>
     </a>
+    </div>
     </div>
   <script type="text/javascript">
   function backdrop() {
