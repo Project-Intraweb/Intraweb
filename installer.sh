@@ -105,9 +105,11 @@ read gitlab
 if [ $gitlab = 'y' ]; then
     cd /home/pi
     echo "Installing Gitlab"
-    curl -Lo gitlab-ce_12.2.5-ce.0_armhf.deb https://packages.gitlab.com/gitlab/raspberry-pi2/packages/raspbian/stretch/gitlab-ce_12.2.5-ce.0_armhf.deb/download.deb
-    sudo apt install ./gitlab-ce_12.2.5-ce.0_armhf.deb
-    sudo sh -c 'echo external_url 'http://raspberrypi.local' > /etc/gitlab/gitlab.rb '
+    sudo apt-get install curl openssh-server ca-certificates apt-transport-https perl
+    curl https://packages.gitlab.com/gpg.key | sudo apt-key add -
+    sudo apt-get install -y postfix
+    sudo curl -sS https://packages.gitlab.com/install/repositories/gitlab/raspberry-pi2/script.deb.sh | sudo bash
+    sudo EXTERNAL_URL="http://raspberrypi.local" apt-get install gitlab-ce
     sudo sh -c 'echo nginx['listen_port'] = 8081 > /etc/gitlab/gitlab.rb '
     sudo sh -c 'echo unicorn['worker_processes'] = 2 > /etc/gitlab/gitlab.rb '
     sudo sh -c 'echo sidekiq['concurrency'] = 9 > /etc/gitlab/gitlab.rb '
