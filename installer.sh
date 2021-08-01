@@ -67,6 +67,7 @@ if [ $next = 'y' ]; then
     echo "Installing nextcloud"
     wget https://download.nextcloud.com/server/releases/latest.zip
     sudo unzip latest.zip
+    sudo mv nextcloud /var/www/html
     sudo mkdir -p /var/www/html/nextcloud/data
     sudo chown -R www-data:www-data /var/www/html/nextcloud/
     sudo chmod 750 /var/www/html/nextcloud/data
