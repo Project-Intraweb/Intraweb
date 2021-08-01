@@ -47,13 +47,7 @@ if [ $wiki = 'y' ]; then
     sudo systemctl start zimply.service
 fi
 
-sudo mv *.html /var/www/html
-sudo mv *.map /var/www/html
-sudo mv *.css /var/www/html
-sudo mv *.js /var/www/html
-sudo mv *.jpeg /var/www/html
-sudo mv *.png /var/www/html
-sudo mv *.json /var/www/html
+sudo mv index.html /var/www/html
 sudo mv phet /var/www/html
 sudo mv logo /var/www/html
 sudo mv backdrop /var/www/html
