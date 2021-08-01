@@ -38,7 +38,6 @@ Please make sure to update tests as appropriate.
 * [RocketChat](https://github.com/RocketChat/Rocket.Chat.RaspberryPi)
 * [ZIMply](https://github.com/kimbauters/ZIMply)
 * [Gitlab](https://about.gitlab.com/)
-* [PHET](https://phet.colorado.edu/)
 * [Webmin](http://www.webmin.com/)
 * [Plex](https://www.plex.tv/)
 ## License
