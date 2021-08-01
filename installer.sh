@@ -55,6 +55,8 @@ sudo mv *.jpeg /var/www/html
 sudo mv *.png /var/www/html
 sudo mv *.json /var/www/html
 sudo mv phet /var/www/html
+sudo mv logo /var/www/html
+sudo mv backdrop /var/www/html
 
 echo "Installing server"
 sudo apt-get install apache2 -y
