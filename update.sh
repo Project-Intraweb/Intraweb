@@ -1,4 +1,5 @@
 #!/bin/bash
+echo "Please note that Intraweb files might be overwritten during the update process."
 echo "Updating packages"
 sudo apt-get update -y
 sudo apt-get upgrade -y
