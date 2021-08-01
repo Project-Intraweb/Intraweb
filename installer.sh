@@ -65,7 +65,7 @@ echo -n "Would you like to install Nextcloud?[y/n]: "
 read next
 if [ $next = 'y' ]; then
     echo "Installing nextcloud"
-    curl -Lo https://download.nextcloud.com/server/releases/latest.zip
+    wget https://download.nextcloud.com/server/releases/latest.zip
     sudo unzip latest.zip
     sudo mkdir -p /var/www/html/nextcloud/data
     sudo chown -R www-data:www-data /var/www/html/nextcloud/
