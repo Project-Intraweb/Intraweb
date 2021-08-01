@@ -126,7 +126,7 @@ else
     echo "Done.
     NOTE A: Depending how large your zim file was, it may still take a while for it to fully index.
     NOTE B: Visit http://$IP to see all apps.
-    NOTE C: Have fun! 
+    NOTE C: Have fun!
     NOTE D: SSL errors are normal. If you are using Chrome, to bypass the warning, wait for the page to fully load and just type to the page "thisisunsafe"."
 fi
 exit 0
