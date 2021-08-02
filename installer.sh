@@ -5,6 +5,7 @@ echo -n "Some things to remember:
 - Make sure /var/www/html is empty
 - Don't be an idiot
 - Make sure you have sudo rights
+- It is recommended to close all other apps before continuing
 Continue?[y/n]: "
 read yesorno
 if [ $yesorno = 'y' ]; then
@@ -15,8 +16,8 @@ else
 fi
 HOSTNAME="$( hostname )";
 echo "Updating"
-# sudo apt update -y
-# sudo apt upgrade -y
+sudo apt update -y
+sudo apt upgrade -y
 echo "Installing dependencies"
 sudo apt install -y snapd wget ca-certificates jq lsb-release python3 python3-setuptools python3-dev python3-pip dnsmasq hostapd perl libnet-ssleay-perl openssl libauthen-pam-perl libpam-runtime libio-pty-perl apt-show-versions python apt-transport-https golang curl
 sudo snap install core
