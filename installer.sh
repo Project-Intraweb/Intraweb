@@ -1,6 +1,6 @@
 #!/bin/bash
 echo -n "Some things to remember:
-- Your hostname MUST be raspberrypi
+- All Apache and Nginx config will be overridden
 - Make sure ALL firewalls are disabled
 - Make sure /var/www/html is empty
 - Don't be an idiot
@@ -13,114 +13,94 @@ else
     echo "Canceling..."
     exit 0
 fi
+HOSTNAME="$( hostname )";
 echo "Updating"
-sudo apt update -y
-sudo apt upgrade -y
+# sudo apt update -y
+# sudo apt upgrade -y
 echo "Installing dependencies"
-sudo apt install -y snapd wget ca-certificates lsb-release python3 python3-setuptools python3-dev python3-pip dnsmasq hostapd perl libnet-ssleay-perl openssl libauthen-pam-perl libpam-runtime libio-pty-perl apt-show-versions python apt-transport-https golang curl
+sudo apt install -y snapd wget ca-certificates jq lsb-release python3 python3-setuptools python3-dev python3-pip dnsmasq hostapd perl libnet-ssleay-perl openssl libauthen-pam-perl libpam-runtime libio-pty-perl apt-show-versions python apt-transport-https golang curl
 sudo snap install core
 sudo systemctl stop dnsmasq
 sudo systemctl stop hostapd
+
+echo '{ "hostname": "'$HOSTNAME'", "rocket": false, "plex": false, "wiki": false, "next": false, "WAP": false, "webmin": false, "gitlab": false, "phet": false }' > prefs.json
 
 echo -n "Would you like to install Rocket.Chat?[y/n]: "
 read rocket
 if [ $rocket = 'y' ]; then
     echo "Installing Rocket Chat"
-    sudo snap install rocketchat-server
+    sudo bash rocket.sh
 fi
 
 echo -n "Would you like to install Plex Media Server?[y/n]: "
-read rocket
-if [ $rocket = 'y' ]; then
+read plex
+if [ $plex = 'y' ]; then
     echo "Installing Plex Media Server"
-    sudo snap install plexmediaserver
+    sudo bash plex.sh
 fi
 
 echo -n "Would you like to install Wikipedia?[y/n]: "
 read wiki
 if [ $wiki = 'y' ]; then
     echo "Installing Wikipedia"
-    pip3 install zimply
-    sudo mv zimply.py /home/pi/wiki.py
-    sudo mv zimply.service /etc/systemd/system/zimply.service
-    sudo systemctl enable zimply.service
-    sudo systemctl start zimply.service
+    sudo bash wiki.sh
 fi
 
+echo -n "Would you like to install Phet?[y/n]: "
+read phet
+if [ $phet = 'y' ]; then
+    echo "Installing Phet"
+    sudo bash phet.sh
+fi
 sudo mv index.html /var/www/html
-sudo mv phet /var/www/html
 sudo mv logo /var/www/html
 sudo mv backdrop /var/www/html
 
 echo "Installing server"
 sudo apt-get install apache2 -y
 sudo apt-get install php7.3 php7.3-gd sqlite php7.3-sqlite3 php7.3-curl php7.3-zip php7.3-xml php7.3-mbstring -y
-sudo service apache2 restart
-
+sudo mv 000-default.conf /etc/apache2/sites-available/000-default.conf
+sudo mv ports.conf /etc/apache2/ports.conf
+sudo systemctl restart apache2
 echo -n "Would you like to install Nextcloud?[y/n]: "
 read next
 if [ $next = 'y' ]; then
-    echo "Installing nextcloud"
-    wget https://download.nextcloud.com/server/releases/latest.zip
-    sudo unzip latest.zip
-    sudo mv nextcloud /var/www/html
-    sudo mkdir -p /var/www/html/nextcloud/data
-    sudo chown -R www-data:www-data /var/www/html/nextcloud/
-    sudo chmod 750 /var/www/html/nextcloud/data
+    echo "Installing Nextcloud"
+    sudo bash next.sh
 fi
 
-echo -n "Would you like to setup a Wireless Access point?[y/n]: "
+echo -n "Would you like to setup a Wireless Access Point?[y/n]: "
 read wifiap
 if [ $wifiap = 'y' ]; then
-    echo "Setting up Wireless Access point"
-    sudo mv dhcpcd.conf /etc/dhcpcd.conf
-    sudo service dhcpcd restart
-    sudo mv /etc/dnsmasq.conf /etc/dnsmasq.conf.orig
-    sudo mv dnsmasq.conf /etc/dnsmasq.conf
-    sudo systemctl start dnsmasq
-    sudo mv hostapd.conf /etc/hostapd/hostapd.conf
-    sudo sh -c 'echo DAEMON_CONF="/etc/hostapd/hostapd.conf" > /etc/default/hostapd'
-    sudo systemctl unmask hostapd
-    sudo systemctl enable hostapd
-    sudo systemctl start hostapd
+    echo "Setting up Wireless Access Point"
+    sudo bash WAP.sh
 fi
 
 echo -n "Would you like to install webmin (highly recomended)?[y/n]: "
 read webmin
 if [ $webmin = 'y' ]; then
     echo "Installing webmin"
-    cd /home/pi
-    wget http://prdownloads.sourceforge.net/webadmin/webmin_1.920_all.deb
-    sudo dpkg --install webmin_1.920_all.deb
+    sudo bash webmin.sh
 fi
-
 echo -n "Would you like to install Gitlab?[y/n]: "
 read gitlab
 if [ $gitlab = 'y' ]; then
-    cd /home/pi
     echo "Installing Gitlab"
-    sudo apt-get install curl openssh-server ca-certificates apt-transport-https perl
-    curl https://packages.gitlab.com/gpg.key | sudo apt-key add -
-    sudo apt-get install -y postfix
-    sudo curl -sS https://packages.gitlab.com/install/repositories/gitlab/raspberry-pi2/script.deb.sh | sudo bash
-    sudo EXTERNAL_URL="http://raspberrypi.local" apt-get install gitlab-ce
-    sudo sh -c 'echo nginx['listen_port'] = 8081 > /etc/gitlab/gitlab.rb '
-    sudo sh -c 'echo unicorn['worker_processes'] = 2 > /etc/gitlab/gitlab.rb '
-    sudo sh -c 'echo sidekiq['concurrency'] = 9 > /etc/gitlab/gitlab.rb '
-    sudo sh -c 'echo prometheus_monitoring['enable'] = false > /etc/gitlab/gitlab.rb '
-    sudo gitlab-ctl reconfigure
+    sudo bash gitlab.sh
 fi
-IFACE="$( ip r | grep "default via" | awk '{ print $5 }' | head -1 )"
-IP="$( ip a show dev "$IFACE" | grep global | grep -oP '\d{1,3}(.\d{1,3}){3}' | head -1 )"
+IP="$( hostname -I | awk '{print $1}' )"
 
 if [ $next = 'y' ]; then
-    echo "Done.
-    First: Visit http://$IP/nextcloud to configure your Nextcloud instance. Depending how large your zim file was, it may still take a while for it to fully index. Visit http://$IP to see all apps. Have fun! NOTE: SSL errors are normal. If you are using Chrome, to bypass the warning, wait for the page to fully load and just type to the page "thisisunsafe"."
-else
-    echo "Done.
-    NOTE A: Depending how large your zim file was, it may still take a while for it to fully index.
-    NOTE B: Visit http://$IP to see all apps.
-    NOTE C: Have fun!
-    NOTE D: SSL errors are normal. If you are using Chrome, to bypass the warning, wait for the page to fully load and just type to the page "thisisunsafe"."
+    echo "DO: Visit http://$IP/nextcloud to configure your Nextcloud instance."
 fi
+if [ $gitlab = 'y' ]; then
+    echo "DO: Visit http://$HOSTNAME.local:69 to configure your Gitlab instance."
+fi
+if [ $rocket = 'y' ]; then
+    echo "DO: Visit http://$HOSTNAME.local:3000 to configure your Rocket.Chat instance."
+fi
+    echo "NOTE A: Depending how large your zim file was, it may still take a while for it to fully index.
+NOTE B: Visit http://$IP to see all apps.
+NOTE C: Have fun! 
+NOTE D: SSL errors is nromal. If you are using Chrome, to bypass the warning, wait for the page to fully load and just type to the page "thisisunsafe"."
 exit 0
