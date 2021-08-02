@@ -55,7 +55,7 @@ if [ $phet = 'y' ]; then
 fi
 sudo mv index.html /var/www/html
 sudo mv logo /var/www/html
-sudo mv backdrop /var/www/html
+sudo mv backdrops /var/www/html
 
 echo "Installing server"
 sudo apt-get install apache2 -y
