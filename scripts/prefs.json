@@ -1,0 +1,11 @@
+{
+  "hostname": "raspberrypi",
+  "rocket": true,
+  "plex": true,
+  "wiki": false,
+  "next": true,
+  "WAP": true,
+  "webmin": true,
+  "gitlab": true,
+  "phet": true
+}

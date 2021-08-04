@@ -6,4 +6,4 @@ rm latest.zip -f
 sudo mkdir -p /var/www/html/nextcloud/data
 sudo chown -R www-data:www-data /var/www/html/nextcloud/
 sudo chmod 750 /var/www/html/nextcloud/data
-jq '.next=true' prefs.json > tmp.$$.json && mv tmp.$$.json prefs.json
+jq '.next=true' /var/www/html/scripts/prefs.json > tmp.$$.json && mv tmp.$$.json /var/www/html/scripts/prefs.json

@@ -183,31 +183,42 @@
       <a class="card" style="background: #0099ff;" href="#">
         <h1 style="color: white;">Project Intraweb</h1>
         <h4 style="color: white;">Current Internet Status:</h4>
-        <h4 id="status" style="color: white; padding-left: 0px;"></h4>
+        <h4 id="status" style="color: white; padding-left: 0px;">Loading</h4>
       </a>
     <div class="divider">
     </div>
     <h3>APPS</h3>
     <div class="container">
-    <a class="flexcard" href="http://raspberrypi.local/nextcloud">
-      <div class="logo" style="background: url(logo/nextcloud.png); background-size: cover;"></div><h1>Nextcloud</h1>
-    </a>
-    <a class="flexcard" href="http://raspberrypi.local:3000">
-      <div class="logo" style="background: url(logo/rocketchat.png); background-size: cover;"></div><h1>Rocket.Chat</h1>
-    </a>
-    <a class="flexcard" href="http://raspberrypi.local:9454">
-      <div class="logo" style="background: url(logo/wiki.png); background-size: cover;"></div><h1>Zimply</h1>
-    </a>
-    <a class="flexcard" href="http://raspberrypi.local:6969">
-      <div class="logo" style="background: url(logo/gitlab.png); background-size: cover;"></div><h1>GitLab</h1>
-    </a>
-    <a class="flexcard" href="https://raspberrypi.local:10000">
-      <div class="logo" style="background: url(logo/webmin.png); background-size: cover;"></div><h1>Webmin</h1>
-    </a>
-    <a class="flexcard" href="http://raspberrypi.local:32400/web">
-      <div class="logo" style="background: url(logo/plex.jpeg); background-size: cover;"></div><h1>Plex</h1>
-    </a>
-    </div>
+      <?php
+      ini_set('display_errors', 1);
+      ini_set('display_startup_errors', 1);
+  error_reporting(E_ALL);
+      $json = file_get_contents("scripts/prefs.json");
+      $prefs = json_decode($json, true);
+      ?>
+      <?php
+      if($prefs["next"]==true) {
+       echo '<a class="flexcard" href="http://'. $prefs["hostname"] .'.local/nextcloud"><div class="logo" style="background: url(logo/nextcloud.png); background-size: cover;"></div><h1>Nextcloud</h1></a>';
+  }
+       if($prefs["rocket"]==true) {
+       echo '<a class="flexcard" href="http://'. $prefs["hostname"] .'.local:3000"><div class="logo" style="background: url(logo/rocketchat.png); background-size: cover;"></div><h1>Rocket.Chat</h1></a>';
+  }
+          if($prefs["plex"]==true) {
+           echo '<a class="flexcard" href="http://'. $prefs["hostname"] .'.local:32400/web"><div class="logo" style="background: url(logo/plex.jpeg); background-size: cover;"></div><h1>Plex</h1></a>';
+}
+    if($prefs["wiki"]==true) {
+      echo '<a class="flexcard" href="http://'. $prefs["hostname"] .'.local:9454"><div class="logo" style="background: url(logo/wiki.png); background-size: cover;"></div><h1>Zimply</h1></a>';
+   }
+       if($prefs["webmin"]==true) {
+      echo '<a class="flexcard" href="https://'. $prefs["hostname"] .'.local:10000"><div class="logo" style="background: url(logo/webmin.png); background-size: cover;"></div><h1>Webmin</h1></a>';
+   }
+   if($prefs["gitlab"]==true) {
+    echo '<a class="flexcard" href="http://'. $prefs["hostname"] .'.local:6969"><div class="logo" style="background: url(logo/gitlab.png); background-size: cover;"></div><h1>GitLab</h1></a>';
+   }
+      if($prefs["phet"]==true) {
+    echo '<a class="flexcard" href="http://'. $prefs["hostname"] .'.local/phet"><div class="logo" style="background: url(logo/phet.png); background-size: cover;"></div><h1>PhET</h1></a>';
+   }
+    ?>
     </div>
   <script type="text/javascript">
   var items = ['cliffs', 'beach', 'sand', 'mountains', 'forests'];

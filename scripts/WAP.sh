@@ -9,4 +9,4 @@ sudo sh -c 'echo DAEMON_CONF="/etc/hostapd/hostapd.conf" > /etc/default/hostapd'
 sudo systemctl unmask hostapd
 sudo systemctl enable hostapd
 sudo systemctl start hostapd
-jq '.WAP=true' prefs.json > tmp.$$.json && mv tmp.$$.json prefs.json
+jq '.WAP=true' /var/www/html/scripts/prefs.json > tmp.$$.json && mv tmp.$$.json /var/www/html/scripts/prefs.json
