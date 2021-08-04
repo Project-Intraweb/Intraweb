@@ -14,6 +14,7 @@ else
     echo "Canceling..."
     exit 0
 fi
+mv ./scripts /var/www/html
 HOSTNAME="$( hostname )";
 echo "Updating"
 sudo apt update -y
@@ -30,28 +31,28 @@ echo -n "Would you like to install Rocket.Chat?[y/n]: "
 read rocket
 if [ $rocket = 'y' ]; then
     echo "Installing Rocket Chat"
-    sudo bash ./scripts/rocket.sh
+    sudo bash /var/www/html/scripts/rocket.sh
 fi
 
 echo -n "Would you like to install Plex Media Server?[y/n]: "
 read plex
 if [ $plex = 'y' ]; then
     echo "Installing Plex Media Server"
-    sudo bash ./scripts/plex.sh
+    sudo bash /var/www/html/scripts/plex.sh
 fi
 
 echo -n "Would you like to install Wikipedia?[y/n]: "
 read wiki
 if [ $wiki = 'y' ]; then
     echo "Installing Wikipedia"
-    sudo bash ./scripts/wiki.sh
+    sudo bash /var/www/html/scripts/wiki.sh
 fi
 
 echo -n "Would you like to install Phet?[y/n]: "
 read phet
 if [ $phet = 'y' ]; then
     echo "Installing Phet"
-    sudo bash ./scripts/phet.sh
+    sudo bash /var/www/html/scripts/phet.sh
 fi
 sudo mv index.php /var/www/html
 sudo mv logo /var/www/html
@@ -67,27 +68,27 @@ echo -n "Would you like to install Nextcloud?[y/n]: "
 read next
 if [ $next = 'y' ]; then
     echo "Installing Nextcloud"
-    sudo bash ./scripts/next.sh
+    sudo bash /var/www/html/scripts/next.sh
 fi
 
 echo -n "Would you like to setup a Wireless Access Point?[y/n]: "
 read wifiap
 if [ $wifiap = 'y' ]; then
     echo "Setting up Wireless Access Point"
-    sudo bash ./scripts/WAP.sh
+    sudo bash /var/www/html/scripts/WAP.sh
 fi
 
 echo -n "Would you like to install webmin (highly recomended)?[y/n]: "
 read webmin
 if [ $webmin = 'y' ]; then
     echo "Installing webmin"
-    sudo bash ./scripts/webmin.sh
+    sudo bash /var/www/html/scripts/webmin.sh
 fi
 echo -n "Would you like to install Gitlab?[y/n]: "
 read gitlab
 if [ $gitlab = 'y' ]; then
     echo "Installing Gitlab"
-    sudo bash ./scripts/gitlab.sh
+    sudo bash /var/www/html/scripts/gitlab.sh
 fi
 IP="$( hostname -I | awk '{print $1}' )"
 
@@ -100,9 +101,10 @@ fi
 if [ $rocket = 'y' ]; then
     echo "DO: Visit http://$HOSTNAME.local:3000 to configure your Rocket.Chat instance."
 fi
-    echo "NOTE A: Depending how large your zim file was, it may still take a while for it to fully index.
-NOTE B: Visit http://$IP to see all apps.
-NOTE C: Have fun! 
-NOTE D: SSL errors is nromal. If you are using Chrome, to bypass the warning, wait for the page to fully load and just type to the page "thisisunsafe"."
-mv ./scripts /var/www/html
+if [ $wiki = 'y' ]; then
+    echo "NOTE A: Depending how large your zim file was, it may still take a while for it to fully index."
+fi
+    echo "NOTE: Visit http://$HOSTNAME.local to see all apps.
+NOTE: Have fun! 
+NOTE: SSL errors is nromal. If you are using Chrome, to bypass the warning, wait for the page to fully load and just type to the page "thisisunsafe"."
 exit 0
