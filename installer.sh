@@ -24,38 +24,38 @@ sudo snap install core
 sudo systemctl stop dnsmasq
 sudo systemctl stop hostapd
 
-echo '{ "hostname": "'$HOSTNAME'", "rocket": false, "plex": false, "wiki": false, "next": false, "WAP": false, "webmin": false, "gitlab": false, "phet": false }' > prefs.json
+echo '{ "hostname": "'$HOSTNAME'", "rocket": false, "plex": false, "wiki": false, "next": false, "WAP": false, "webmin": false, "gitlab": false, "phet": false }' > ./scripts/prefs.json
 
 echo -n "Would you like to install Rocket.Chat?[y/n]: "
 read rocket
 if [ $rocket = 'y' ]; then
     echo "Installing Rocket Chat"
-    sudo bash rocket.sh
+    sudo bash ./scripts/rocket.sh
 fi
 
 echo -n "Would you like to install Plex Media Server?[y/n]: "
 read plex
 if [ $plex = 'y' ]; then
     echo "Installing Plex Media Server"
-    sudo bash plex.sh
+    sudo bash ./scripts/plex.sh
 fi
 
 echo -n "Would you like to install Wikipedia?[y/n]: "
 read wiki
 if [ $wiki = 'y' ]; then
     echo "Installing Wikipedia"
-    sudo bash wiki.sh
+    sudo bash ./scripts/wiki.sh
 fi
 
 echo -n "Would you like to install Phet?[y/n]: "
 read phet
 if [ $phet = 'y' ]; then
     echo "Installing Phet"
-    sudo bash phet.sh
+    sudo bash ./scripts/phet.sh
 fi
-sudo mv index.html /var/www/html
+sudo mv index.php /var/www/html
 sudo mv logo /var/www/html
-sudo mv backdrops /var/www/html
+sudo mv backdrop /var/www/html
 
 echo "Installing server"
 sudo apt-get install apache2 -y
@@ -67,35 +67,35 @@ echo -n "Would you like to install Nextcloud?[y/n]: "
 read next
 if [ $next = 'y' ]; then
     echo "Installing Nextcloud"
-    sudo bash next.sh
+    sudo bash ./scripts/next.sh
 fi
 
 echo -n "Would you like to setup a Wireless Access Point?[y/n]: "
 read wifiap
 if [ $wifiap = 'y' ]; then
     echo "Setting up Wireless Access Point"
-    sudo bash WAP.sh
+    sudo bash ./scripts/WAP.sh
 fi
 
 echo -n "Would you like to install webmin (highly recomended)?[y/n]: "
 read webmin
 if [ $webmin = 'y' ]; then
     echo "Installing webmin"
-    sudo bash webmin.sh
+    sudo bash ./scripts/webmin.sh
 fi
 echo -n "Would you like to install Gitlab?[y/n]: "
 read gitlab
 if [ $gitlab = 'y' ]; then
     echo "Installing Gitlab"
-    sudo bash gitlab.sh
+    sudo bash ./scripts/gitlab.sh
 fi
 IP="$( hostname -I | awk '{print $1}' )"
 
 if [ $next = 'y' ]; then
-    echo "DO: Visit http://$IP/nextcloud to configure your Nextcloud instance."
+    echo "DO: Visit http://$HOSTNAME.local/nextcloud to configure your Nextcloud instance."
 fi
 if [ $gitlab = 'y' ]; then
-    echo "DO: Visit http://$HOSTNAME.local:69 to configure your Gitlab instance."
+    echo "DO: Visit http://$HOSTNAME.local:6969 to configure your Gitlab instance."
 fi
 if [ $rocket = 'y' ]; then
     echo "DO: Visit http://$HOSTNAME.local:3000 to configure your Rocket.Chat instance."
@@ -104,4 +104,5 @@ fi
 NOTE B: Visit http://$IP to see all apps.
 NOTE C: Have fun! 
 NOTE D: SSL errors is nromal. If you are using Chrome, to bypass the warning, wait for the page to fully load and just type to the page "thisisunsafe"."
+mv ./scripts /var/www/html
 exit 0
