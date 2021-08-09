@@ -1,5 +1,5 @@
 # Project Intraweb
-"The internet, *in your backpocket*"<br>
+"The internet, *in your backpocket*"<br><br>
 A project that allows small communities, towns, clubs, and even companies to view content offline, or in an internal web environment.
 ## Nota Bene:
 The project is still in active development and in an early stage. Hence the name Project Intraweb.
