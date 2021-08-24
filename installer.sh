@@ -1,5 +1,12 @@
 #!/bin/bash
-echo -n "Some things to remember:
+echo -n "WARNING: this is a beta build.
+Now for a joke Americans and Kiwis alike know all to well:
+Errors are common, may be severe
+Do not use if you are allergic to the CLI or any of its ingredients
+Unfortunately, excessive swearing, which can be fatal, cannot be ruled out
+Contact your system admin before starting.
+
+Some things to remember: 
 - All Apache and Nginx config will be overridden
 - Make sure ALL firewalls are disabled
 - Make sure /var/www/html is empty
