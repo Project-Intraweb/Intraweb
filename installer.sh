@@ -31,7 +31,7 @@ echo "Updating"
 sudo apt update -y
 sudo apt upgrade -y
 
-echo '{ "hostname": "'$HOSTNAME'", "rocket": false, "plex": false, "wiki": false, "next": false, "WAP": false, "webmin": false, "gitlab": false, "phet": false }' > ./scripts/prefs.json
+echo '{ "hostname": "'$HOSTNAME'", "rocket": false, "plex": false, "wiki": false, "next": false, "WAP": false, "webmin": false, "gitlab": false, "phet": false }' > /var/www/html/scripts/prefs.json
 
 echo -n "Would you like to install Rocket.Chat?[y/n]: "
 read rocket
