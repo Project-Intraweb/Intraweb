@@ -15,6 +15,7 @@ else
     exit 0
 fi
 echo "Installing dependencies"
+sudo apt install libsquashfuse0 squashfuse fuse  -y
 sudo apt install -y snapd wget ca-certificates jq lsb-release python3 python3-setuptools python3-dev python3-pip dnsmasq hostapd perl libnet-ssleay-perl openssl libauthen-pam-perl libpam-runtime libio-pty-perl apt-show-versions python apt-transport-https golang curl
 sudo snap install core
 sudo systemctl stop dnsmasq
