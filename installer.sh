@@ -63,7 +63,7 @@ if [ $phet = 'y' ]; then
 fi
 sudo mv index.php /var/www/html
 sudo mv logo /var/www/html
-sudo mv backdrop /var/www/html
+sudo mv backdrops /var/www/html
 
 echo -n "Would you like to install Nextcloud?[y/n]: "
 read next
