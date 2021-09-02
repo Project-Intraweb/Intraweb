@@ -14,16 +14,22 @@ else
     echo "Canceling..."
     exit 0
 fi
-mv ./scripts /var/www/html
-HOSTNAME="$( hostname )";
-echo "Updating"
-sudo apt update -y
-sudo apt upgrade -y
 echo "Installing dependencies"
 sudo apt install -y snapd wget ca-certificates jq lsb-release python3 python3-setuptools python3-dev python3-pip dnsmasq hostapd perl libnet-ssleay-perl openssl libauthen-pam-perl libpam-runtime libio-pty-perl apt-show-versions python apt-transport-https golang curl
 sudo snap install core
 sudo systemctl stop dnsmasq
 sudo systemctl stop hostapd
+echo "Installing server"
+sudo apt-get install apache2 -y
+sudo apt-get install php7.3 php7.3-gd sqlite php7.3-sqlite3 php7.3-curl php7.3-zip php7.3-xml php7.3-mbstring -y
+sudo mv 000-default.conf /etc/apache2/sites-available/000-default.conf
+sudo mv ports.conf /etc/apache2/ports.conf
+sudo systemctl restart apache2
+mv ./scripts /var/www/html
+HOSTNAME="$( hostname )";
+echo "Updating"
+sudo apt update -y
+sudo apt upgrade -y
 
 echo '{ "hostname": "'$HOSTNAME'", "rocket": false, "plex": false, "wiki": false, "next": false, "WAP": false, "webmin": false, "gitlab": false, "phet": false }' > ./scripts/prefs.json
 
@@ -58,12 +64,6 @@ sudo mv index.php /var/www/html
 sudo mv logo /var/www/html
 sudo mv backdrop /var/www/html
 
-echo "Installing server"
-sudo apt-get install apache2 -y
-sudo apt-get install php7.3 php7.3-gd sqlite php7.3-sqlite3 php7.3-curl php7.3-zip php7.3-xml php7.3-mbstring -y
-sudo mv 000-default.conf /etc/apache2/sites-available/000-default.conf
-sudo mv ports.conf /etc/apache2/ports.conf
-sudo systemctl restart apache2
 echo -n "Would you like to install Nextcloud?[y/n]: "
 read next
 if [ $next = 'y' ]; then
@@ -105,6 +105,6 @@ if [ $wiki = 'y' ]; then
     echo "NOTE A: Depending how large your zim file was, it may still take a while for it to fully index."
 fi
     echo "NOTE: Visit http://$HOSTNAME.local to see all apps.
-NOTE: Have fun! 
+NOTE: Have fun!
 NOTE: SSL errors is nromal. If you are using Chrome, to bypass the warning, wait for the page to fully load and just type to the page "thisisunsafe"."
 exit 0
